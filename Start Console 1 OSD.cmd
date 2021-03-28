@@ -1,8 +1,13 @@
 @echo off
 :: A command prompt window is annoying to look at, so we're running the script minimized. 
 :: The script basically restarts itself when it's not minimized. Scriptception!
+::if not DEFINED IS_MINIMIZED set IS_MINIMIZED=1 && start "" /min "%~dpnx0" %* && exit
 
-if not DEFINED IS_MINIMIZED set IS_MINIMIZED=1 && start "" /min "%~dpnx0" %* && exit
+:: Change working directory to current user's roaming profile, as that is where Softube places its configuration file by default.
+cd %appdata%\Softube
+
+:: Delete Console 1 On-Screen Display.txt in case it exists.
+del "Console 1 On-Screen Display.txt"
 
 ::Setting the variables of the Console 1 OSD
 set size_x=1920
@@ -17,9 +22,6 @@ TIMEOUT /T 1 >NUL
 taskkill /IM "Console 1 On-Screen Display (x64).exe" >NUL 2>NUL
 tasklist /FI "IMAGENAME eq Console 1 On-Screen Display (x64).exe" 2>NUL | find /I /N "Console 1" >NUL
 if "%ERRORLEVEL%"=="0" (GOTO killconsole)
-
-:: Delete Console 1 On-Screen Display.txt in case it exists.
-del "Console 1 On-Screen Display.txt"
 
 ::Then we write the config file for Console 1's software.
 
