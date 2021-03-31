@@ -1,7 +1,7 @@
 @echo off
 :: A command prompt window is annoying to look at, so we're running the script minimized. 
 :: The script basically restarts itself when it's not minimized. Scriptception!
-::if not DEFINED IS_MINIMIZED set IS_MINIMIZED=1 && start "" /min "%~dpnx0" %* && exit
+if not DEFINED IS_MINIMIZED set IS_MINIMIZED=1 && start "" /min "%~dpnx0" %* && exit
 
 :: Change working directory to current user's roaming profile, as that is where Softube places its configuration file by default.
 cd %appdata%\Softube
