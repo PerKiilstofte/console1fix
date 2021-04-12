@@ -69,3 +69,4 @@ echo } >> "Console 1 On-Screen Display.txt"
 
 ::Now we start Softube Console 1 OSD software
 start "" "C:\Program Files\Softube\Plug-Ins 64-bit\Console 1 On-Screen Display (x64).exe"
+exit
